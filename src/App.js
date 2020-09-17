@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="shopping-list">
       <Toolbar></Toolbar>
-      <h1>Here start Landing Page component</h1>
+
       <LandingPage></LandingPage>
  <Button href="#">Link</Button> <Button type="submit">Button</Button>{' '}
   </div>
