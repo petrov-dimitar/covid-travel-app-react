@@ -1,7 +1,7 @@
 import React from 'react';
-import '../App.css';
+import '../../App.css';
 import { Button } from '@material-ui/core';
-import '../styles/Highlight.css'
+import '../../styles/Highlight.css'
 
 class Highlight extends React.Component {
     render() {
@@ -9,7 +9,7 @@ class Highlight extends React.Component {
       <div>
            {/* <h1 >Hello From Highlight Component</h1> */}
            <div>
-   <img className='image'  alt='' ></img>
+          <img className='image'  alt='' ></img>
           <Button className='button' color="primary">Hello World</Button>
            </div>
         

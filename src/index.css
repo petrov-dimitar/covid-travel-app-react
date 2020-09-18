@@ -13,6 +13,28 @@ code {
 }
 
 
-.button{
+button{
   margin: 10px;
+  color: white !important;
+  text-decoration: none;
+  
+}
+
+button:focus{
+ border: none !important;
+ outline: none !important;
+  
+}
+
+link{
+  color: white !important;
+}
+
+a:hover{
+  position: relative;
+ /* bottom: 2px; */
+  color: white !important;
+  text-decoration: none !important;
+  
+  
 }
