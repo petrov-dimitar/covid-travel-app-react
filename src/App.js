@@ -1,18 +1,37 @@
 import React from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 
-function App() {
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+// import Alert from 'react-bootstrap/Button';
+import Toolbar from './ToolbarMenu/Toolbar'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
+import LandingPage from './LandingPage/LandingPage';
+import TravelDashboard from './TravelDashboard/TravelDashboard';
+
+export default function App() {
   return (
-    <div className="shopping-list">
-    <h1>Shopping List for {this.props.name}</h1>
-    <ul>
-      <li>Instagram</li>
-      <li>WhatsApp</li>
-      <li>Oculus</li>
-    </ul>
-  </div>
+    <Router>
+      <div>
+      
+        <Toolbar></Toolbar>
+
+        <Switch>
+          <Route path="/landing">
+            <LandingPage />
+          </Route>
+          <Route path="/plan">
+            <TravelDashboard />
+          </Route>
+        
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
-export default App;
