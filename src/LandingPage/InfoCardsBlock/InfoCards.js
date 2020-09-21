@@ -28,6 +28,7 @@ class InfoCards extends React.Component {
     render() {
       return (
       <div className='card_block'>
+        <h1>Our Services</h1>
          
         {this.state.cards.map(el=>{
           return  <InfoCard title={el.title} image ={el.image} text={el.text} key={el.id} ></InfoCard>

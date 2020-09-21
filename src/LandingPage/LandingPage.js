@@ -2,6 +2,7 @@ import React from 'react';
 import '../App.css';
 import Highlight from './HighlightBlock/Highligh'
 import InfoCards from './InfoCardsBlock/InfoCards'
+import SocialMedia from './SocialMediaBlock/SocialMedia'
 
 class LandingPage extends React.Component {
     render() {
@@ -9,6 +10,7 @@ class LandingPage extends React.Component {
       <div>
          <Highlight></Highlight>
         <InfoCards></InfoCards>
+        <SocialMedia></SocialMedia>
       </div>
      );
     }

@@ -1,0 +1,44 @@
+.image_social{
+    background-image: url("https://images.pexels.com/photos/1974927/pexels-photo-1974927.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+  background-size: cover;
+  width: 100vw;
+  height: calc(40vh);
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  margin: auto;
+  position: relative;
+
+}
+
+.social_h1{
+color: white;
+position: absolute;
+z-index: 1;
+
+margin: 0;
+/* background: yellow; */
+position: absolute;
+top: 10%;
+left: 50%;
+margin-right: -50%;
+transform: translate(-50%, -50%)
+}
+
+.social_block{
+    position: relative;
+
+}
+
+.social_icons{
+    color: white;
+    position: absolute;
+    z-index: 1;
+    
+    margin: 0;
+    /* background: yellow; */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}

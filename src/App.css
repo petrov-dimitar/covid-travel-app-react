@@ -36,3 +36,37 @@
     transform: rotate(360deg);
   }
 }
+
+.card_block{
+  width: 1400px !important;
+  margin: auto !important;
+}
+
+h1{
+ text-align: center;
+ margin: 20px;
+ padding: 20px;
+ padding-bottom: 10px;
+ font-size: 3rem;
+}
+
+.highlight_h1{
+  color: white;
+position: absolute;
+z-index: 1;
+
+margin: 0;
+/* background: yellow; */
+position: absolute;
+top: 20%;
+left: 50%;
+margin-right: -50%;
+transform: translate(-50%, -50%)
+}
+
+@media (max-width:1400px) { 
+  .card_block{
+    width: unset !important;
+    margin: auto !important;
+  }
+} 

@@ -3,7 +3,7 @@
     max-width: 300px !important ;
     margin: 20px auto !important;
     margin-left: 20px !important;
-    display: inline-block;
+    display: inline-block !important;
 }
 
 h2{
