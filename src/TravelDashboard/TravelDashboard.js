@@ -1,6 +1,6 @@
 import React from 'react';
 import '../App.css';
-
+import {Map} from './MapComponent/Map'
 import '../styles/Highlight.css'
 
 class Highlight extends React.Component {
@@ -8,7 +8,7 @@ class Highlight extends React.Component {
       return (
       <div>
           <h1>Hello FROM Travel Dashboard</h1>
-        
+        <Map></Map>
          
     </div>
     );
