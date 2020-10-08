@@ -9,17 +9,9 @@ import './Map.css'
 const geoUrl =
   "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
 
-// const rounded = num => {
-//   if (num > 1000000000) {
-//     return Math.round(num / 100000000) / 10 + "Bn";
-//   } else if (num > 1000000) {
-//     return Math.round(num / 100000) / 10 + "M";
-//   } else {
-//     return Math.round(num / 100) / 10 + "K";
-//   }
-// };
 
-const MapChart = ({ setTooltipContent, setCountryConent, setListCountriesConent }) => {
+const MapChart = ({ setTooltipContent, setCountryConent, setListCountriesConent,setChosenCountryJSON }) => {
+  
   return (
     <>
     
@@ -30,6 +22,7 @@ const MapChart = ({ setTooltipContent, setCountryConent, setListCountriesConent 
               geographies.map(geo => (
           
                 <Geography
+                  
                   key={geo.rsmKey}
                   geography={geo}
                   onLoadStart={ ()=>{
@@ -40,6 +33,25 @@ const MapChart = ({ setTooltipContent, setCountryConent, setListCountriesConent 
                     const { NAME } = geo.properties;
                     setCountryConent(`${NAME}`);
                     setListCountriesConent(geographies)
+
+                    fetch(`https://restcountries.eu/rest/v2/name/${geo.properties.NAME}`)
+                    .then(res => res.json())
+                    .then(
+                      (result) => {
+                        console.log(result);
+                        setChosenCountryJSON(result)
+                      },
+                      // Note: it's important to handle errors here
+                      // instead of a catch() block so that we don't swallow
+                      // exceptions from actual bugs in components.
+                      (error) => {
+                        this.setState({
+                          isLoaded: true,
+                          error
+                        });
+                      }
+                    )
+                   
                   }}
                   onMouseEnter={() => {
                     const { NAME } = geo.properties;
@@ -58,16 +70,23 @@ const MapChart = ({ setTooltipContent, setCountryConent, setListCountriesConent 
                       outline: "none"
                     },
                     pressed: {
-                      fill: "#E42",
+                      fill: "#ECEFF1",
+                      stroke: "#607D8B",
+                      strokeWidth: 0.75,
                       outline: "none"
                     }
+                   
+                    
                   }}
+                 
                 />
               ))
             }
           </Geographies>
         </ZoomableGroup>
+        
       </ComposableMap>
+      <h1>HELLO</h1>
     </>
   );
 };

@@ -22,6 +22,8 @@ export function Map() {
   const [content, setContent] = useState("");
   const [country, setCountry] = useState("");
   const [listCountries, setlistCountries] = useState([]);
+  const [pressedCountry, setChosenCountry] = useState([{}]);
+  // const [capital, setCapitalName] = useState([{}]);
 
   return (
     <div className='map_wrapper'>
@@ -32,11 +34,14 @@ export function Map() {
       style={{ width: 300 }}
       renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" />}
     />
-      <MapChart setTooltipContent={setContent} setCountryConent = {setCountry} setListCountriesConent= {setlistCountries} >
+      <MapChart setTooltipContent={setContent} setCountryConent = {setCountry} setListCountriesConent= {setlistCountries} setChosenCountryJSON = {setChosenCountry} >
      
       </MapChart>
       <ReactTooltip>{content}</ReactTooltip>
       <h1>Chosen Country: {country}</h1>
+       <span>{pressedCountry[0].capital }</span>
+  
+
       
     </div>
   );
