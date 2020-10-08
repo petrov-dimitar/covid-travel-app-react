@@ -1,42 +1,44 @@
-import React, {useState} from "react"
-import './Map.css'
-import {
-  ComposableMap,
-  Geographies,
-  Geography,
-} from "react-simple-maps"
+import React, { useState } from "react";
+// import ReactDOM from "react-dom";
+import ReactTooltip from "react-tooltip";
 
-// url to a valid topojson file
-const geoUrl =
-  "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json"
+// import {
+//   ComposableMap,
+//   Geographies,
+//   Geography,
+// } from "react-simple-maps"
+// import "./styles.css";
 
-export const Map = () => {
-  const [country, setCountry] = useState(
-    'Hello Function Component!'
-  );
- 
-  const handleChangeGeo = (geo) => 
-  {
-    console.log(geo.properties.NAME);
-    setCountry(geo.properties.NAME);
-  }
+import MapChart from "./MapChart";
+// const handleChangeGeo = (geo) => 
+//   {
+//     console.log(geo.properties.NAME);
+//     setCountry(geo.properties.NAME);
+//   }
+
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+export function Map() {
+  const [content, setContent] = useState("");
+  const [country, setCountry] = useState("");
+  const [listCountries, setlistCountries] = useState([]);
+
   return (
-    <div>
-      <div className= 'map'>
-      <ComposableMap >
-        <Geographies geography={geoUrl}>
-          {({geographies}) => geographies.map(geo =>
-            <Geography onClick={() => handleChangeGeo(geo) } key={geo.rsmKey} geography={geo} >
-              
-            </Geography>
-          )}
-        </Geographies>
-      </ComposableMap>
-      </div>
+    <div className='map_wrapper'>
+         <Autocomplete
+      id="combo-box-demo"
+      options={listCountries}
+      getOptionLabel={(option) => option.properties.NAME}
+      style={{ width: 300 }}
+      renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" />}
+    />
+      <MapChart setTooltipContent={setContent} setCountryConent = {setCountry} setListCountriesConent= {setlistCountries} >
+     
+      </MapChart>
+      <ReactTooltip>{content}</ReactTooltip>
+      <h1>Chosen Country: {country}</h1>
       
-          <h1>Chosen Country: {country}</h1>
     </div>
-  )
-
+  );
 }
 

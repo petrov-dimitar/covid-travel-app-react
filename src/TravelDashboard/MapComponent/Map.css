@@ -1,4 +1,9 @@
 .map{
-    width: 50vw !important;
+    width: 800px !important;
     margin: 0px auto !important;
+    border: 2px solid black;
+}
+
+.map_wrapper{
+text-align: center;
 }
