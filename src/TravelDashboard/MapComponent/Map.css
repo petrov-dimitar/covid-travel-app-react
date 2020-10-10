@@ -4,6 +4,7 @@
     /* border: 2px solid black; */
     display: inline-block !important;
     border-radius: 50%;
+    vertical-align: top !important;
 }
 
 .map_wrapper{
