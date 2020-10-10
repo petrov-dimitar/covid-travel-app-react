@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 // import ReactDOM from "react-dom";
 import ReactTooltip from "react-tooltip";
-
+import './Map.css';
+import Button from '@material-ui/core/Button';
 // import {
 //   ComposableMap,
 //   Geographies,
@@ -38,10 +39,17 @@ export function Map() {
      
       </MapChart>
       <ReactTooltip>{content}</ReactTooltip>
-      <h1>Chosen Country: {country}</h1>
-       <span>{pressedCountry[0].capital }</span>
-  
 
+     
+     
+      <div className='country_info_right'>
+      
+      <div className='country_name'>{country}</div>  <img className='flag_image' alt='FLAG' src={"https://www.countryflags.io/" + pressedCountry[0].alpha2Code +  "/flat/64.png"} ></img>
+       <div><span className='label'>CAPITAL:</span> <span className='value'>{pressedCountry[0].capital }</span> </div>
+       <div><span className='label'>COUNTRY CODE:</span> <span className='value'>{pressedCountry[0].alpha2Code }</span></div>
+       <div><span className='label'>POPULATION:</span ><span className='value'>{pressedCountry[0].population / 1000000 + ' Million' }</span></div>
+       <Button variant="contained" color="secondary"> COVID INFO FOR {country} </Button>
+       </div>
       
     </div>
   );

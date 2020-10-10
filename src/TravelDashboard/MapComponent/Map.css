@@ -1,9 +1,38 @@
 .map{
-    width: 800px !important;
+    width: 600px !important;
     margin: 0px auto !important;
-    border: 2px solid black;
+    /* border: 2px solid black; */
+    display: inline-block !important;
+    border-radius: 50%;
 }
 
 .map_wrapper{
 text-align: center;
+}
+
+.country_info_right{
+width: 600px !important;
+/* border: 1px solid black; */
+display: inline-block !important;
+text-align: left;
+padding: 16px;
+background-color: whitesmoke;
+
+
+}
+
+.country_name{
+    font-size: 2.5rem;
+    display: inline-block;
+}
+.label{
+    font-style: italic;
+}
+
+.value{
+    font-weight: bold;
+    text-align: right;
+}
+.flag_image{
+    float: right;
 }

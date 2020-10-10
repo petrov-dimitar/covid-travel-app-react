@@ -86,7 +86,7 @@ const MapChart = ({ setTooltipContent, setCountryConent, setListCountriesConent,
         </ZoomableGroup>
         
       </ComposableMap>
-      <h1>HELLO</h1>
+     
     </>
   );
 };
