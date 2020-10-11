@@ -32,6 +32,7 @@ import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 
+
 // import '../../index.css'
 const useStyles = makeStyles({
   root: {
@@ -55,12 +56,13 @@ export function Map() {
   const [pressedCountry, setChosenCountry] = useState([{}]);
   const [countryImages, setCountryImages] = useState([]);
   const [loading, setLoading] = React.useState(false);
+  const [showDashboard, setShowDashboard] = React.useState(false);
   // const [isCountrySelected, setIsCountrySelected] = React.useState(false);
   // const [capital, setCapitalName] = useState([{}]);
   const classes = useStyles();
   return (
     <div className='wrapper_main'>
-    <Toolbar className='toolbar ' color='secondary'>
+    <Toolbar className='toolbar'>
       <h2 className='subtitle_2'>Choose Travel Destination</h2>
     <Link to="/landing"> <Button className={classes.menuButton}    color="inherit">Home</Button></Link> 
     <Link to="/plan"> <Button className={classes.menuButton}   startIcon={<CloudUploadIcon />} color="inherit">Plan Trip</Button></Link>
@@ -101,7 +103,9 @@ export function Map() {
       <CardActions>
       
         <Button className='action_button_card design_brown_main' variant="contained" color="primary" onClick={()=>{ 
+          setShowDashboard(false);
           setLoading(true);
+          setTimeout(()=>{setShowDashboard(true); setLoading(false)}, 3000)
         }} > COVID INFO FOR {country} </Button>
        
        
@@ -120,6 +124,10 @@ export function Map() {
       
     </div>
     
+    <div className= 'dashboard'>
+
+    {showDashboard && <img alt='dashb' src='https://www.linkpicture.com/q/dashboard_example.png'></img>}
+    </div>
     </div>
   );
 }
