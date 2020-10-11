@@ -6,6 +6,7 @@ import {
   Geography
 } from "react-simple-maps";
 import './Map.css'
+
 const geoUrl =
   "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
 
@@ -51,7 +52,7 @@ const MapChart = ({ setTooltipContent, setCountryConent, setListCountriesConent,
                         });
                       }
                     )
-                    let url_images =  `https://pixabay.com/api/?key=18655243-d33667c21333274041b3420c5=&q=${geo.properties.NAME}&image_type=photo&pretty=true&per_page=5`
+                    let url_images =  `https://pixabay.com/api/?key=18655243-d33667c21333274041b3420c5&q=${geo.properties.NAME}&image_type=photo&pretty=true&per_page=5`
                     console.log(url_images);
                     fetch(url_images)
                     .then(res=>res.json()).then(

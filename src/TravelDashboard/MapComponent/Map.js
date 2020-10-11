@@ -29,6 +29,7 @@ import {
   Link,
 } from "react-router-dom";
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 // import '../../index.css'
@@ -53,6 +54,8 @@ export function Map() {
   const [listCountries, setlistCountries] = useState([]);
   const [pressedCountry, setChosenCountry] = useState([{}]);
   const [countryImages, setCountryImages] = useState([]);
+  const [loading, setLoading] = React.useState(false);
+  // const [isCountrySelected, setIsCountrySelected] = React.useState(false);
   // const [capital, setCapitalName] = useState([{}]);
   const classes = useStyles();
   return (
@@ -75,7 +78,8 @@ export function Map() {
      
       </MapChart>
       <ReactTooltip>{content}</ReactTooltip>
-
+{
+  country &&
       <Card  className='country_info_right'>
      
         <CardMedia
@@ -96,13 +100,26 @@ export function Map() {
      
       <CardActions>
       
-        <Button className='action_button_card design_brown_main' variant="contained" color="primary"> COVID INFO FOR {country} </Button>
+        <Button className='action_button_card design_brown_main' variant="contained" color="primary" onClick={()=>{ 
+          setLoading(true);
+        }} > COVID INFO FOR {country} </Button>
+       
+       
       </CardActions>
     </Card>
-     
-   
+}
+    <div>
+          <hr></hr>
+         
+        
+        </div>
+
+       
+        {loading &&   <Card className='wrapper_loading'><CircularProgress size={68} className='progress_bar' /> </Card>}
+           
       
     </div>
+    
     </div>
   );
 }
