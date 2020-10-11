@@ -24,10 +24,14 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import Toolbar from '@material-ui/core/Toolbar';
+import {
+  Link,
+} from "react-router-dom";
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 
-// let url = 'https://pixabay.com/api/?key=18655243-d33667c21333274041b3420c5&q=yellow+flowers&image_type=photo&pretty=true';
 
-
+// import '../../index.css'
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
@@ -52,8 +56,15 @@ export function Map() {
   // const [capital, setCapitalName] = useState([{}]);
   const classes = useStyles();
   return (
+    <div className='wrapper_main'>
+    <Toolbar className='toolbar ' color='secondary'>
+      <h2 className='subtitle_2'>Choose Travel Destination</h2>
+    <Link to="/landing"> <Button className={classes.menuButton}    color="inherit">Home</Button></Link> 
+    <Link to="/plan"> <Button className={classes.menuButton}   startIcon={<CloudUploadIcon />} color="inherit">Plan Trip</Button></Link>
+    </Toolbar>
     <div className='map_wrapper'>
          <Autocomplete
+         className='autcomplete'
       id="combo-box-demo"
       options={listCountries}
       getOptionLabel={(option) => option.properties.NAME}
@@ -78,23 +89,20 @@ export function Map() {
       <div className='country_name'>{country}</div>  <img className='flag_image' alt='FLAG' src={"https://www.countryflags.io/" + pressedCountry[0].alpha2Code +  "/flat/64.png"} ></img>
        <div><span className='label'>CAPITAL:</span> <span className='value'>{pressedCountry[0].capital }</span> </div>
        <div><span className='label'>COUNTRY CODE:</span> <span className='value'>{pressedCountry[0].alpha2Code }</span></div>
-       <div><span className='label'>POPULATION:</span ><span className='value'>{pressedCountry[0].population / 1000000 + ' Million' }</span></div>
-       <Button variant="contained" color="secondary"> COVID INFO FOR {country} </Button>
+       <div><span className='label'>POPULATION:</span ><span className='value'>{ Math.round(pressedCountry[0].population / 1000000) + ' Million' }</span></div>
+       
        </div>
         </CardContent>
      
       <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-        <Button size="small" color="primary">
-          Learn More
-        </Button>
+      
+        <Button className='action_button_card design_brown_main' variant="contained" color="primary"> COVID INFO FOR {country} </Button>
       </CardActions>
     </Card>
      
    
       
+    </div>
     </div>
   );
 }

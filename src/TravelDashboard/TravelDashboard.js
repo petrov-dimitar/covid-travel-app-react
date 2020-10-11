@@ -2,12 +2,13 @@ import React from 'react';
 import '../App.css';
 import {Map} from './MapComponent/Map'
 import '../styles/Highlight.css'
+import './TravelDashboard.css'
 
 class Highlight extends React.Component {
     render() {
       return (
-      <div>
-          <h1>Hello FROM Travel Dashboard</h1>
+      <div className='wrapper_travel_dashboard'>
+        
         <Map></Map>
          
     </div>

@@ -75,11 +75,12 @@ const MapChart = ({ setTooltipContent, setCountryConent, setListCountriesConent,
                   }}
                   style={{
                     default: {
-                      fill: "#D6D6DA",
+                      fill: "white",
                       outline: "none"
                     },
                     hover: {
-                      fill: "#F53",
+                      // fill: "#F53",
+                      fill: "#CE6D39",
                       outline: "none"
                     },
                     pressed: {

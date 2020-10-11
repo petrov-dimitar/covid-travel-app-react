@@ -17,7 +17,7 @@ import TravelDashboard from './TravelDashboard/TravelDashboard';
 export default function App() {
   return (
     <Router>
-      <div>
+      <div className='body'>
       
         <Toolbar></Toolbar>
 

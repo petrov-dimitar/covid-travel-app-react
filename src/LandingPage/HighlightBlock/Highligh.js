@@ -18,7 +18,7 @@ const images = [
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    flexWrap: 'wrap',
+      
     minWidth: 300,
     width: '100%',
   },
@@ -93,7 +93,7 @@ export default function ButtonBases() {
 
   return (
     <div className={classes.root}>
-       <h1 className='highlight_h1'>Discover new possibilities</h1>
+       <h1 className='highlight_h1'>Traveling during COVID-19 is now possible again </h1>
       {images.map((image) => (
  
         <ButtonBase

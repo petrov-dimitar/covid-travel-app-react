@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import {  makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import '../App.css'
@@ -21,8 +21,8 @@ const useStyles = makeStyles((theme) => ({
   menuButton: {
     marginRight: theme.spacing(2),
     '&:hover': {
-      backgroundColor: 'red',
-      color: 'white',
+      backgroundColor: 'white',
+     
       
     }
   },
@@ -38,9 +38,9 @@ export default function ButtonAppBar() {
     <div >
       <AppBar className={classes.root}  
         >
-        <Toolbar>
-        <Link to="/landing"> <Button className={classes.menuButton}   startIcon={<DeleteIcon />} color="inherit">Home</Button></Link> 
-        <Link to="/plan"> <Button className={classes.menuButton}   startIcon={<CloudUploadIcon />} color="inherit">Plan Trip</Button></Link>
+        <Toolbar className= 'design_brown_main'>
+        <Link to="/landing"> <Button className='toolbar_button'  startIcon={<DeleteIcon />} color="inherit">Home</Button></Link> 
+        <Link to="/plan"> <Button className='toolbar_button'   startIcon={<CloudUploadIcon />} color="inherit">Plan Trip</Button></Link>
         </Toolbar>
       </AppBar>
     </div>

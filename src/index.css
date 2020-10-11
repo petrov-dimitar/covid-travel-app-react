@@ -5,6 +5,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* background-color: whitesmoke !important;
+   */
+   background-color: whitesmoke !important;
 }
 
 code {
@@ -30,11 +33,47 @@ link{
   color: white !important;
 }
 
+link:hover{
+  color: black !important;
+}
 a:hover{
   position: relative;
  /* bottom: 2px; */
-  color: white !important;
+  color: #CE6D39 !important;
   text-decoration: none !important;
   
   
+}
+
+.toolbar_button:hover{
+  color: #CE6D39 !important;
+  background-color: white !important;
+}
+/* 
+.subtitle_2{
+  font-weight: medium;
+  font-size: 14px;
+  letter-spacing: 0.1px;
+} */
+
+.design_brown{
+  background-color: #CE6D39 !important;
+}
+
+
+.design_green{
+  background-color: #5CAB7D !important;
+}
+
+.design_green_text{
+  color: #5CAB7D !important;
+}
+
+
+.design_brown_main{
+  background-color: #CE6D39 !important;
+}
+
+.design_pale{
+  background-color: #FFF1E9 !important;
 }
