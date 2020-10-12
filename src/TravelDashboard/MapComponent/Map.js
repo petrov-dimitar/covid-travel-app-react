@@ -51,12 +51,14 @@ const useStyles = makeStyles({
 });
 export function Map() {
   const [content, setContent] = useState("");
+
   const [country, setCountry] = useState("");
   const [listCountries, setlistCountries] = useState([]);
   const [pressedCountry, setChosenCountry] = useState([{}]);
   const [countryImages, setCountryImages] = useState([]);
   const [loading, setLoading] = React.useState(false);
   const [showDashboard, setShowDashboard] = React.useState(false);
+  
   // const [isCountrySelected, setIsCountrySelected] = React.useState(false);
   // const [capital, setCapitalName] = useState([{}]);
   const classes = useStyles();
