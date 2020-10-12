@@ -77,3 +77,7 @@ a:hover{
 .design_pale{
   background-color: #FFF1E9 !important;
 }
+
+html {
+  scroll-behavior: smooth;
+}

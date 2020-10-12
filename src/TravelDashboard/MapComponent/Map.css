@@ -1,11 +1,15 @@
+.html{
+    scroll-behavior: smooth;
+}
 .map{
-    width: 600px !important;
+    /* width: 600px !important; */
     margin: 0px auto !important;
     /* border: 2px solid black; */
     display: inline-block !important;
-    border-radius: 50%;
+    /* border-radius: 50%; */
     vertical-align: top !important;
-    background: RGB(57, 135, 201);
+    /* background: RGB(57, 135, 201); */
+    background-color: rgb(214, 222, 251);;
 
     box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);
 
@@ -14,7 +18,7 @@
 
 .map_wrapper{
 text-align: center;
-margin: 20px;
+/* margin: 20px; */
 }
 
 .country_info_right{
@@ -25,6 +29,8 @@ text-align: left;
 padding: 16px;
 background-color: whitesmoke;
 margin: 20px;
+position: fixed !important;
+right: 20px; 
 
 
 }
@@ -58,6 +64,7 @@ margin: 20px;
     background-color: white; 
     box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12) !important;
     padding-top: 8px;
+    position: fixed !important;
 }
 
 .autcomplete{
@@ -82,8 +89,15 @@ margin: 20px;
     margin: auto;
     border-radius: 50% !important;
     padding: 20px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
 }
 
 .dashboard{
 text-align: center;
+}
+
+.geographies:focus{
+    outline: 0px !important;
 }

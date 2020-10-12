@@ -18,22 +18,22 @@ class Highlight extends React.Component {
       .then(res => res.json())
       .then(
         result => {
-          console.log(result);
-
+          
+// eslint-disable-next-line
           for (const [key, value] of Object.entries(result.data)) {
             if(value.advisory.score < 2.5){
-              this.state.colorCountries.push(new CountryColor(value.iso_alpha2, 'green', value.name))
+              this.state.colorCountries.push(new CountryColor(value.iso_alpha2, '#d2fdd3', value.name))
 
             }
             else if (value.advisory.score > 2.5 && value.advisory.score < 4.5){
-              this.state.colorCountries.push(new CountryColor(value.iso_alpha2, 'yellow', value.name))
+              this.state.colorCountries.push(new CountryColor(value.iso_alpha2, '#fff9c6', value.name))
             }
             else{
-              this.state.colorCountries.push(new CountryColor(value.iso_alpha2, 'red', value.name))
+              this.state.colorCountries.push(new CountryColor(value.iso_alpha2, '#fcdddd', value.name))
             }
-            console.log(key);
+           
           }
-          console.log(this.state.colorCountries);
+   
 
          
           

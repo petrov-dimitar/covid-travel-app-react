@@ -1,6 +1,6 @@
 import React, { memo, useEffect } from "react";
 import {
-  ZoomableGroup,
+  // ZoomableGroup  ,
   ComposableMap,
   Geographies,
   Geography
@@ -21,14 +21,14 @@ const MapChart = ({ setTooltipContent, setCountryConent, setListCountriesConent,
     <>
     
       <ComposableMap className='map'  data-tip="" projectionConfig={{ scale: 200 }}>
-        <ZoomableGroup>
-          <Geographies geography={geoUrl}>
+        
+          <Geographies  geography={geoUrl}>
             {({ geographies }) =>
               geographies.map(geo => {
                 const {  ISO_A2 } = geo.properties;
                const curr = setColorCountries.find(el => el.code === ISO_A2)
-               console.log(ISO_A2)
-               return ( <Geography
+              
+               return ( <Geography className='geographies'
                   fill= {curr? curr.color : 'black'}
                   key={geo.rsmKey}
                   geography={geo}
@@ -48,7 +48,7 @@ const MapChart = ({ setTooltipContent, setCountryConent, setListCountriesConent,
                     .then(res => res.json())
                     .then(
                       (result) => {
-                        console.log(result);
+                    
                         setChosenCountryJSON(result)
                       },
                       // Note: it's important to handle errors here
@@ -62,16 +62,16 @@ const MapChart = ({ setTooltipContent, setCountryConent, setListCountriesConent,
                       }
                     )
                     let url_images =  `https://pixabay.com/api/?key=18655243-d33667c21333274041b3420c5&q=${geo.properties.NAME}&image_type=photo&pretty=true&per_page=5`
-                    console.log(url_images);
+                    
                     fetch(url_images)
                     .then(res=>res.json()).then(
                       (result) =>{
                         list_image_country = [];
                         setList_image_country([]);
                        result.hits.map(el=> list_image_country.push(el.largeImageURL) );
-                       console.log(list_image_country)
+                      
                        setList_image_country(list_image_country)
-                       console.log(list_image_country[0])
+                      
                       }
                     )
 
@@ -79,22 +79,25 @@ const MapChart = ({ setTooltipContent, setCountryConent, setListCountriesConent,
                   onMouseEnter={() => {
                     const { NAME } = geo.properties;
                     setTooltipContent(`${NAME}`);
+                    
                   }}
                   onMouseLeave={() => {
                     setTooltipContent("");
                   }}
                   style={{
-                  
+                  // default:{stro: 'gray'},
                     hover: {
                       // fill: "#F53",
                       fill: "#CE6D39",
-                      outline: "none"
+                      stroke: "black",
+                      strokeWidth: 1
+                      // transform: 'scale(1.2)'
                     },
                     pressed: {
                       fill: "#ECEFF1",
                       stroke: "#607D8B",
                       strokeWidth: 0.75,
-                      outline: "none"
+                      
                     }
                    
                     
@@ -104,7 +107,7 @@ const MapChart = ({ setTooltipContent, setCountryConent, setListCountriesConent,
               })
             }
           </Geographies>
-        </ZoomableGroup>
+ 
         
       </ComposableMap>
      

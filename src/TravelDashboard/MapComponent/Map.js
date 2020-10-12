@@ -25,12 +25,11 @@ import CardContent from '@material-ui/core/CardContent';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Toolbar from '@material-ui/core/Toolbar';
-import {
-  Link,
-} from "react-router-dom";
-import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import { useRef } from 'react'
 import CircularProgress from '@material-ui/core/CircularProgress';
 
+
+const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop)   
 
 
 // import '../../index.css'
@@ -50,6 +49,9 @@ const useStyles = makeStyles({
   }
 });
 export function Map(props) {
+
+  const myRef = useRef(null)
+  const executeScroll = () => scrollToRef(myRef)
   const [content, setContent] = useState("");
 
   const [country, setCountry] = useState("");
@@ -66,15 +68,15 @@ export function Map(props) {
   useEffect(() => {
     
     // Update the document title using the browser API
-    console.log(props.setColorCountries)
+  
   });
 
   return (
     <div className='wrapper_main'>
     <Toolbar className='toolbar'>
       <h2 className='subtitle_2'>Choose Travel Destination</h2>
-    <Link to="/landing"> <Button className={classes.menuButton}    color="inherit">Home</Button></Link> 
-    <Link to="/plan"> <Button className={classes.menuButton}   startIcon={<CloudUploadIcon />} color="inherit">Plan Trip</Button></Link>
+  
+
     </Toolbar>
     <div className='map_wrapper'>
          <Autocomplete
@@ -114,7 +116,8 @@ export function Map(props) {
         <Button className='action_button_card design_brown_main' variant="contained" color="primary" onClick={()=>{ 
           setShowDashboard(false);
           setLoading(true);
-          setTimeout(()=>{setShowDashboard(true); setLoading(false)}, 3000)
+          setTimeout(()=>{setShowDashboard(true); setLoading(false); executeScroll()}, 3000)
+          
         }} > COVID INFO FOR {country} </Button>
        
        
@@ -135,7 +138,7 @@ export function Map(props) {
     
     <div className= 'dashboard'>
 
-    {showDashboard && <img alt='dashb' src='https://www.linkpicture.com/q/dashboard_example.png'></img>}
+    {showDashboard && <img ref={myRef} alt='dashb' src='https://www.linkpicture.com/q/dashboard_example.png'></img>}
     </div>
     </div>
   );
