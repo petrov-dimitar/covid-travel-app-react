@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useEffect } from "react";
 import {
   ZoomableGroup,
   ComposableMap,
@@ -11,8 +11,12 @@ const geoUrl =
   "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
 
 let list_image_country = [];
-const MapChart = ({ setTooltipContent, setCountryConent, setListCountriesConent,setChosenCountryJSON, setList_image_country }) => {
+const MapChart = ({ setTooltipContent, setCountryConent, setListCountriesConent,setChosenCountryJSON, setList_image_country, setColorCountries }) => {
  
+
+  useEffect(() => {
+   
+  });
   return (
     <>
     
@@ -20,21 +24,26 @@ const MapChart = ({ setTooltipContent, setCountryConent, setListCountriesConent,
         <ZoomableGroup>
           <Geographies geography={geoUrl}>
             {({ geographies }) =>
-              geographies.map(geo => (
-          
-                <Geography
-                  
+              geographies.map(geo => {
+                const {  ISO_A2 } = geo.properties;
+               const curr = setColorCountries.find(el => el.code === ISO_A2)
+               console.log(ISO_A2)
+               return ( <Geography
+                  fill= {curr? curr.color : 'black'}
                   key={geo.rsmKey}
                   geography={geo}
+
                   onLoadStart={ ()=>{
                     setListCountriesConent(geographies)
                    
                   }}
                   onClick={()=>{
+                 
                     const { NAME } = geo.properties;
                     setCountryConent(`${NAME}`);
                     setListCountriesConent(geographies)
-
+                    // console.log(setColorCountries);
+                    
                     fetch(`https://restcountries.eu/rest/v2/name/${geo.properties.NAME}`)
                     .then(res => res.json())
                     .then(
@@ -75,10 +84,7 @@ const MapChart = ({ setTooltipContent, setCountryConent, setListCountriesConent,
                     setTooltipContent("");
                   }}
                   style={{
-                    default: {
-                      fill: "white",
-                      outline: "none"
-                    },
+                  
                     hover: {
                       // fill: "#F53",
                       fill: "#CE6D39",
@@ -94,8 +100,8 @@ const MapChart = ({ setTooltipContent, setCountryConent, setListCountriesConent,
                     
                   }}
                  
-                />
-              ))
+                />)
+              })
             }
           </Geographies>
         </ZoomableGroup>

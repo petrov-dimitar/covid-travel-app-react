@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // import ReactDOM from "react-dom";
 import ReactTooltip from "react-tooltip";
 import './Map.css';
@@ -49,7 +49,7 @@ const useStyles = makeStyles({
   
   }
 });
-export function Map() {
+export function Map(props) {
   const [content, setContent] = useState("");
 
   const [country, setCountry] = useState("");
@@ -58,10 +58,17 @@ export function Map() {
   const [countryImages, setCountryImages] = useState([]);
   const [loading, setLoading] = React.useState(false);
   const [showDashboard, setShowDashboard] = React.useState(false);
-  
+  // const [colorCoun,setColorCountries]
   // const [isCountrySelected, setIsCountrySelected] = React.useState(false);
   // const [capital, setCapitalName] = useState([{}]);
   const classes = useStyles();
+ 
+  useEffect(() => {
+    
+    // Update the document title using the browser API
+    console.log(props.setColorCountries)
+  });
+
   return (
     <div className='wrapper_main'>
     <Toolbar className='toolbar'>
@@ -78,7 +85,7 @@ export function Map() {
       style={{ width: 300 }}
       renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" />}
     />
-      <MapChart setTooltipContent={setContent} setCountryConent = {setCountry} setListCountriesConent= {setlistCountries} setChosenCountryJSON = {setChosenCountry} setList_image_country = {setCountryImages}>
+      <MapChart setColorCountries ={props.setColorCountries} setTooltipContent={setContent} setCountryConent = {setCountry} setListCountriesConent= {setlistCountries} setChosenCountryJSON = {setChosenCountry} setList_image_country = {setCountryImages}>
      
       </MapChart>
       <ReactTooltip>{content}</ReactTooltip>

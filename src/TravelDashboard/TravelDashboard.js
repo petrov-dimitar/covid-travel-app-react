@@ -22,14 +22,14 @@ class Highlight extends React.Component {
 
           for (const [key, value] of Object.entries(result.data)) {
             if(value.advisory.score < 2.5){
-              this.state.colorCountries.push(new CountryColor(value.iso_alpha2, 'green'))
+              this.state.colorCountries.push(new CountryColor(value.iso_alpha2, 'green', value.name))
 
             }
             else if (value.advisory.score > 2.5 && value.advisory.score < 4.5){
-              this.state.colorCountries.push(new CountryColor(value.iso_alpha2, 'yellow'))
+              this.state.colorCountries.push(new CountryColor(value.iso_alpha2, 'yellow', value.name))
             }
             else{
-              this.state.colorCountries.push(new CountryColor(value.iso_alpha2, 'red'))
+              this.state.colorCountries.push(new CountryColor(value.iso_alpha2, 'red', value.name))
             }
             console.log(key);
           }
@@ -54,7 +54,7 @@ class Highlight extends React.Component {
       return (
       <div className='wrapper_travel_dashboard'>
         
-        <Map setColorCountries = 'colorCountries' ></Map>
+        <Map setColorCountries = {this.state.colorCountries} ></Map>
          
     </div>
     );
