@@ -27,7 +27,7 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import Toolbar from '@material-ui/core/Toolbar';
 import { useRef } from 'react'
 import CircularProgress from '@material-ui/core/CircularProgress';
-
+import CloseIcon from '@material-ui/icons/Close';
 
 const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop)   
 
@@ -49,7 +49,7 @@ const useStyles = makeStyles({
   }
 });
 export function Map(props) {
-
+  
   const myRef = useRef(null)
   const executeScroll = () => scrollToRef(myRef)
   const [content, setContent] = useState("");
@@ -93,8 +93,9 @@ export function Map(props) {
       <ReactTooltip>{content}</ReactTooltip>
 {
   country &&
+  
       <Card  className='country_info_right'>
-     
+     <Button className = 'close_window' onClick={()=>{setCountry("")}} ><CloseIcon/></Button>
         <CardMedia
           className={classes.media}
           image= {countryImages[1]}
