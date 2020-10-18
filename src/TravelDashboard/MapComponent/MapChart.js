@@ -1,6 +1,6 @@
 import React, { memo, useEffect } from "react";
 import {
-  // ZoomableGroup  ,
+  ZoomableGroup  ,
   ComposableMap,
   Geographies,
   Geography
@@ -20,8 +20,8 @@ const MapChart = ({ setTooltipContent, setCountryConent, setListCountriesConent,
   return (
     <>
     
-      <ComposableMap className='map'  data-tip="" projectionConfig={{ scale: 200 }}>
-        
+      <ComposableMap className='map'  data-tip="" projectionConfig={{ scale: 400 }}>
+      <ZoomableGroup zoom={1}>
           <Geographies  geography={geoUrl}>
             {({ geographies }) =>
               geographies.map(geo => {
@@ -108,7 +108,7 @@ const MapChart = ({ setTooltipContent, setCountryConent, setListCountriesConent,
             }
           </Geographies>
  
-        
+        </ZoomableGroup>
       </ComposableMap>
      
     </>

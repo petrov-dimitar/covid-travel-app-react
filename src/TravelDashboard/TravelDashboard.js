@@ -11,6 +11,7 @@ class Highlight extends React.Component {
     this.state = {
       colorCountries: []
     };
+    
   }
 
   componentDidMount() {
@@ -23,6 +24,14 @@ class Highlight extends React.Component {
           for (const [key, value] of Object.entries(result.data)) {
             if(value.advisory.score < 2.5){
               this.state.colorCountries.push(new CountryColor(value.iso_alpha2, '#d2fdd3', value.name))
+              this.setState(statee=>{
+              const list=  statee.colorCountries.push(new CountryColor(value.iso_alpha2, '#d2fdd3', value.name))
+
+              return {
+                list,
+                value: '',
+              };
+              })
 
             }
             else if (value.advisory.score > 2.5 && value.advisory.score < 4.5){
@@ -50,14 +59,28 @@ class Highlight extends React.Component {
       )
   }
     render() {
+      const { colorCountries } = this.state
+      return colorCountries.length ? this.renderMap() : (
+      
+        <span>Loading wells...</span>
+      )
      
+    
+    }
+    renderMap(){
       return (
-      <div className='wrapper_travel_dashboard'>
         
-        <Map setColorCountries = {this.state.colorCountries} ></Map>
-         
-    </div>
-    );
+        <div className='wrapper_travel_dashboard'>
+          <div className= 'container_width_standard'>
+          <h1>Travel planner</h1>
+          </div>
+      
+          <Map setColorCountries = {this.state.colorCountries} ></Map>
+          <div className= 'container_width_standard'>
+  
+          </div>
+      </div>
+      );
     }
   }
 
