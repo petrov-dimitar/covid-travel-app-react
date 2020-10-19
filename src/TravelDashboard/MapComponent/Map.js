@@ -24,12 +24,13 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import Toolbar from '@material-ui/core/Toolbar';
+// import Toolbar from '@material-ui/core/Toolbar';
 import { useRef } from 'react'
 import CircularProgress from '@material-ui/core/CircularProgress';
 import CloseIcon from '@material-ui/icons/Close';
 
 const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop)   
+
 
 
 // import '../../index.css'
@@ -64,7 +65,11 @@ export function Map(props) {
   // const [isCountrySelected, setIsCountrySelected] = React.useState(false);
   // const [capital, setCapitalName] = useState([{}]);
   const classes = useStyles();
- 
+  const legend_colors = [
+    {code: 'Low Risk', color:'#d2fdd3', advisory: 'Usually this is an indicator that travelling in this country is relatively safe. Higher attention is advised with values > 1.' },
+    {code: 'Medium Risk', color:'#fff9c6', advisory: 'Travel should be reduced to a necessary minimum and be conducted with good preparation and high attention.'},
+    {code: 'Extreme Warning', color:'#fcdddd', advisory: 'You should avoid any trips. A high warning index is a sound indicator of potential harm to your health and well-being.'}
+  ] 
   useEffect(() => {
     
     // Update the document title using the browser API
@@ -73,12 +78,22 @@ export function Map(props) {
 
   return (
     <div className='wrapper_main'>
-    <Toolbar className='toolbar'>
-      <h2 className='subtitle_2'>Choose Travel Destination</h2>
   
-
-    </Toolbar>
     <div className='map_wrapper'>
+    <div className= 'container_width_standard'>
+      <Card className='legend'>
+      <h1 className='header_legend'>   legend </h1>
+        {legend_colors.map(code_object=>{
+          return (<div className='legend_code_wrapper' key={code_object.code}>
+            <li>  <span className='code_icon' style={{ background: code_object.color }}></span><span className='legend_code_content'>{code_object.code}</span><span className='legend_code_content'>{code_object.advisory}</span></li>
+          
+          </div>)
+        })}
+    
+
+      </Card>
+  
+  </div>
          <Autocomplete
          className='autcomplete'
       id="combo-box-demo"
@@ -126,7 +141,7 @@ export function Map(props) {
     </Card>
 }
     <div>
-          <hr></hr>
+          
          
         
         </div>

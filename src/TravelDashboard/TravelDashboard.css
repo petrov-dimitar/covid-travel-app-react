@@ -10,7 +10,7 @@
 } */
 
 .container_width_standard{
-    width: 1000px !important;
+    max-width: 1400px !important;
     margin: 0px auto;
     text-align: left;
 }
@@ -18,4 +18,19 @@
 .container_width_standard h1{
    
     text-align: left;
+}
+.header_legend{
+    z-index: 10;
+}
+
+.sub_heading{
+   
+}
+.heading{
+    margin-left: 0px;
+    padding-left: 0px;
+}
+
+.heading_wrapper{
+    padding: 16px;
 }

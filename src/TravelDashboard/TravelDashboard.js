@@ -37,7 +37,10 @@ class Highlight extends React.Component {
             else if (value.advisory.score > 2.5 && value.advisory.score < 4.5){
               this.state.colorCountries.push(new CountryColor(value.iso_alpha2, '#fff9c6', value.name))
             }
-            else{
+            // else if (value.advisory.score >= 3.5 && value.advisory.score < 4.5){
+            //   this.state.colorCountries.push(new CountryColor(value.iso_alpha2, '#ffe5c6   ', value.name))
+            // } 
+            else if (value.advisory.score > 4.5){
               this.state.colorCountries.push(new CountryColor(value.iso_alpha2, '#fcdddd', value.name))
             }
            
@@ -72,12 +75,19 @@ class Highlight extends React.Component {
         
         <div className='wrapper_travel_dashboard'>
           <div className= 'container_width_standard'>
-          <h1>Travel planner</h1>
+          <div className='heading_wrapper'>
+          <h1 className='heading'>Travel planner</h1>
+          <span className='sub_heading'>Check where you can fly with us among our operating routes and see applicable travel rules on the interactive map below.</span>
           </div>
       
-          <Map setColorCountries = {this.state.colorCountries} ></Map>
+          </div>
+      
+
+          <Map setColorCountries = {this.state.colorCountries} >
+       
+          </Map>
           <div className= 'container_width_standard'>
-  
+          {/* <img  alt='dashb' src='https://www.linkpicture.com/q/dashboard_example.png'></img> */}
           </div>
       </div>
       );
