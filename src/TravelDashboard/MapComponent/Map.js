@@ -133,10 +133,13 @@ export function Map(props) {
           setShowDashboard(false);
           setLoading(true);
           setTimeout(()=>{setShowDashboard(true); setLoading(false); executeScroll()}, 3000)
-          
+          props.CreateDashboard(country);
         }} > COVID INFO FOR {country} </Button>
        
-       
+       <Button className='action_button_card design_brown_main' variant="contained" color="primary" onClick={()=>{ 
+         
+          props.CreateDashboard(country);
+        }} > COVID INFO FOR- {country} </Button>
       </CardActions>
     </Card>
 }

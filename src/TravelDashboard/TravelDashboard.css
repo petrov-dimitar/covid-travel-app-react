@@ -34,3 +34,17 @@
 .heading_wrapper{
     padding: 16px;
 }
+
+.dashboard{
+    margin-top: 60px;
+    text-align: left;
+}
+
+.dashboard_left_container{
+    width: 50%;
+display: inline-block
+}
+.dashboard_right_container{
+    display: inline-block;
+    width: 50%;
+}

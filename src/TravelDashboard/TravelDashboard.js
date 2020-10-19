@@ -4,6 +4,7 @@ import {Map} from './MapComponent/Map'
 import '../styles/Highlight.css'
 import './TravelDashboard.css'
 import {CountryColor} from '../Interfaces/CountryColor'
+import Card from '@material-ui/core/Card';
 class Highlight extends React.Component {
  
   constructor(props){
@@ -12,6 +13,13 @@ class Highlight extends React.Component {
       colorCountries: []
     };
     
+  }
+
+  CreateDashboard (country_name) {
+    console.log(country_name)
+    fetch(`https://corona.lmao.ninja/v2/historical/${country_name}?lastdays=30`).then(res=>res.json()).then(result=>{
+      console.log(result);
+    })
   }
 
   componentDidMount() {
@@ -77,18 +85,38 @@ class Highlight extends React.Component {
           <div className= 'container_width_standard'>
           <div className='heading_wrapper'>
           <h1 className='heading'>Travel planner</h1>
-          <span className='sub_heading'>Check where you can fly with us among our operating routes and see applicable travel rules on the interactive map below.</span>
+          <span className='sub_heading'>Check where you can travel abroad using the interactive map below.</span>
           </div>
       
           </div>
       
 
-          <Map setColorCountries = {this.state.colorCountries} >
+          <Map setColorCountries = {this.state.colorCountries}   CreateDashboard = {this.CreateDashboard} >
        
           </Map>
           <div className= 'container_width_standard'>
           {/* <img  alt='dashb' src='https://www.linkpicture.com/q/dashboard_example.png'></img> */}
+          <Card className='dashboard'>
+            <h2>[Country]</h2>
+            <span>code:</span>
+            <div className='dashboard_left_container'>
+            <div className= 'weather_container'>
+
+            </div>
+
+            <div className='trend_container'>
+
+            </div>
+            </div>
+            <div className='dashboard_right_container'>
+            <div className='news_container'>
+
+            </div>
+            </div>
+          </Card>
           </div>
+
+         
       </div>
       );
     }
