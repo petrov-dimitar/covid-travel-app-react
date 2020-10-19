@@ -5,20 +5,80 @@ import '../styles/Highlight.css'
 import './TravelDashboard.css'
 import {CountryColor} from '../Interfaces/CountryColor'
 import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import {  LineChart, Line, XAxis,
+   Tooltip, CartesianGrid, 
+   } from 'recharts';
+import { TrendDataPoint } from '../Interfaces/TrendDataPoint';
+import { Button, CardContent } from '@material-ui/core';
+// import { TrendDataPoint } from '../Interfaces/TrendDataPoint';
+// import CardMedia from '@material-ui/core/CardMedia';
+import Typography from '@material-ui/core/Typography';
 class Highlight extends React.Component {
  
   constructor(props){
     super(props);
     this.state = {
-      colorCountries: []
+      colorCountries: [],
+      trendData: [],
+      news_data: [],
+      country: '',
+      weather_data: []
     };
     
+    this.CreateDashboard = this.CreateDashboard.bind(this)
   }
 
   CreateDashboard (country_name) {
-    console.log(country_name)
+    this.setState({country: country_name})
+    //get trend data
     fetch(`https://corona.lmao.ninja/v2/historical/${country_name}?lastdays=30`).then(res=>res.json()).then(result=>{
       console.log(result);
+      const cases = result.timeline.cases;
+      const list_cases = [];
+      for (var key in cases) {
+        if (cases.hasOwnProperty(key)) {
+            console.log(key + " -> " + cases[key]);
+            let dataPoint = new TrendDataPoint(key, cases[key])
+            list_cases.push(dataPoint);
+        
+        }
+    }
+    // console.log(this.state.trendData);
+    this.setState({trendData: list_cases});
+    // console.log(this.state);
+    })
+
+    //get news
+    var today = new Date();
+var dd = String(today.getDate()).padStart(2, '0');
+var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+var yyyy = today.getFullYear();
+
+today = yyyy + '-' + mm + '-' + dd;
+    const list_news = [];
+    fetch(`https://newsapi.org/v2/everything?q=${country_name}&from=${today}&sortBy=publishedAt&apiKey=ee22bce9ca5b426b95280e18bc370f97&pageSize=5&page=1`).then(res=>res.json()).then(result=>{
+      for (var article in result.articles){
+        result.articles[article].key =   Number(article)  + 1
+        list_news.push(result.articles[article]);
+      }
+      // result.articles.map(article=>{
+      //   list_news.push(article);
+      // })
+      console.log(list_news);
+      this.setState({news_data: list_news});
+    })
+    
+    //Get weather data
+    fetch(`https://api.openweathermap.org/data/2.5/forecast?appid=e8297308c9cf1b9f0c6aae968b10b5ac&q=estonia&mode=json&units=metric`).then(res=>res.json()).then(result=>{
+      console.log(result.list);
+      const  weather_points = [];
+      for (var article in result.list){
+        result.list[article].key =   Number(article)  + 1
+        weather_points.push(new TrendDataPoint(result.list[article].dt_txt, result.list[article].main.temp ));
+      }
+      console.log(weather_points);
+      this.setState({weather_data: weather_points});
     })
   }
 
@@ -97,20 +157,70 @@ class Highlight extends React.Component {
           <div className= 'container_width_standard'>
           {/* <img  alt='dashb' src='https://www.linkpicture.com/q/dashboard_example.png'></img> */}
           <Card className='dashboard'>
-            <h2>[Country]</h2>
-            <span>code:</span>
+            <h2>{this.state.country}</h2>
+            <div>code:</div>
             <div className='dashboard_left_container'>
             <div className= 'weather_container'>
-
+            <LineChart
+            className='chart'
+  width={600}
+  height={400}
+  data={this.state.weather_data}
+  margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
+>
+  <XAxis dataKey="date" />
+  <Tooltip />
+  <CartesianGrid stroke="#f5f5f5" />
+  <Line type="monotone" dataKey="infected" stroke="#ff7300" yAxisId={1} />
+  {/* <Line type="monotone" dataKey="pv" stroke="#387908" yAxisId={1} /> */}
+</LineChart>
             </div>
 
             <div className='trend_container'>
-
+              <span>Covid-19 Trend (30-Days)</span>
+            <LineChart
+            className='chart'
+  width={600}
+  height={400}
+  data={this.state.trendData}
+  margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
+>
+  <XAxis dataKey="date" />
+  <Tooltip />
+  <CartesianGrid stroke="#f5f5f5" />
+  <Line type="monotone" dataKey="infected" stroke="#ff7300" yAxisId={0} />
+  {/* <Line type="monotone" dataKey="pv" stroke="#387908" yAxisId={1} /> */}
+</LineChart>
             </div>
             </div>
             <div className='dashboard_right_container'>
             <div className='news_container'>
-
+              <span>Latest News</span>
+            {this.state.news_data.map(article=>{
+              return (
+                <Card
+                variant='outlined'
+                
+                key= {article.key}
+               className='article'>
+              
+        <CardContent>
+        <Typography gutterBottom variant="h6" component="h2">
+           {article.title}
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+      {article.description}
+          </Typography>
+        </CardContent>
+                   
+                  {/* <img alt='ds' src={article.urlToImage}></img> */}
+                  <CardActions>   
+                    {/* <spacer></spacer> */}
+                  <Button variant="outlined" className='button_article' href={article.url}  >Read More</Button>
+                  </CardActions>
+                </Card>
+              )
+            })}
             </div>
             </div>
           </Card>

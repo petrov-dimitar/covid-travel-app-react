@@ -38,13 +38,48 @@
 .dashboard{
     margin-top: 60px;
     text-align: left;
+    padding: 16px;
 }
 
 .dashboard_left_container{
-    width: 50%;
-display: inline-block
+ 
+display: inline-block;
+width: 50%;
+float: left;
+padding: 16px;
 }
 .dashboard_right_container{
     display: inline-block;
     width: 50%;
+   float: right;
+   padding: 16px;
+}
+.article{
+    /* padding: 8px; */
+    margin: 16px;
+}
+
+.button_article{
+    color: #CE6D39 !important;
+    float: right !important;
+    flex: 1 0 auto !important
+}
+.media{
+    /* height: 140px !important; */
+}
+/* .article_title{
+    margin-top: 16px;
+    margin-bottom: 16px;
+    font-size: 16px;
+    font-weight: bold;
+} */
+
+.news_container{
+    max-height: 1000px;
+    overflow-y: scroll;
+}
+
+.chart{
+    width: 600px !important;
+    
 }
