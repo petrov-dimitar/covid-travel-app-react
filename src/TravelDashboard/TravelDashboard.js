@@ -10,6 +10,7 @@ import {  LineChart, Line, XAxis,
    Tooltip, CartesianGrid, 
    } from 'recharts';
 import { TrendDataPoint } from '../Interfaces/TrendDataPoint';
+import {WeatherDataPoint} from '../Interfaces/WeatherDataPoint'
 import { Button, CardContent } from '@material-ui/core';
 // import { TrendDataPoint } from '../Interfaces/TrendDataPoint';
 // import CardMedia from '@material-ui/core/CardMedia';
@@ -75,7 +76,7 @@ today = yyyy + '-' + mm + '-' + dd;
       const  weather_points = [];
       for (var article in result.list){
         result.list[article].key =   Number(article)  + 1
-        weather_points.push(new TrendDataPoint(result.list[article].dt_txt, result.list[article].main.temp ));
+        weather_points.push(new WeatherDataPoint(result.list[article].dt_txt, result.list[article].main.temp_min, result.list[article].main.temp_max, result.list[article].weather[0  ].main ));
       }
       console.log(weather_points);
       this.setState({weather_data: weather_points});
@@ -160,42 +161,36 @@ today = yyyy + '-' + mm + '-' + dd;
             <h2>{this.state.country}</h2>
             <div>code:</div>
             <div className='dashboard_left_container'>
-            <div className= 'weather_container'>
+              
+            <div className='trend_container'>
+              <h5>Covid-19 Trend (30-Days)</h5>
+              <Card>
             <LineChart
             className='chart'
-  width={600}
-  height={400}
-  data={this.state.weather_data}
-  margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
->
-  <XAxis dataKey="date" />
-  <Tooltip />
-  <CartesianGrid stroke="#f5f5f5" />
-  <Line type="monotone" dataKey="infected" stroke="#ff7300" yAxisId={1} />
-  {/* <Line type="monotone" dataKey="pv" stroke="#387908" yAxisId={1} /> */}
-</LineChart>
+                width={600}
+                height={400}
+                data={this.state.trendData}
+                margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
+              >
+                <XAxis dataKey="date" />
+                <Tooltip />
+                <CartesianGrid stroke="#f5f5f5" />
+                <Line type="monotone" dataKey="infected" stroke="#ff7300" yAxisId={0} />
+                {/* <Line type="monotone" dataKey="pv" stroke="#387908" yAxisId={1} /> */}
+                            </LineChart>
+                            </Card>
+            </div>
+            <div className= 'weather_container'>
+            <h5>Weather</h5>
+          {this.state.weather_data.map(data_point=>{
+            return (<Card className='weather_card' variant='outlined'><span className='weather_attribute'>{data_point.date}</span> <span>{data_point.temp_high}/ {data_point.temp_high} </span> {data_point.weather} </Card>)
+          })}
             </div>
 
-            <div className='trend_container'>
-              <span>Covid-19 Trend (30-Days)</span>
-            <LineChart
-            className='chart'
-  width={600}
-  height={400}
-  data={this.state.trendData}
-  margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
->
-  <XAxis dataKey="date" />
-  <Tooltip />
-  <CartesianGrid stroke="#f5f5f5" />
-  <Line type="monotone" dataKey="infected" stroke="#ff7300" yAxisId={0} />
-  {/* <Line type="monotone" dataKey="pv" stroke="#387908" yAxisId={1} /> */}
-</LineChart>
-            </div>
             </div>
             <div className='dashboard_right_container'>
             <div className='news_container'>
-              <span>Latest News</span>
+              <h5>Latest News</h5>
             {this.state.news_data.map(article=>{
               return (
                 <Card

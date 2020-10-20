@@ -83,3 +83,16 @@ padding: 16px;
     width: 600px !important;
     
 }
+
+.weather_attribute{
+    margin: 20px;
+}
+
+.weather_card{
+    margin-bottom: 6px;
+}
+
+.weather_container{
+    max-height: 500px;
+    overflow-y: scroll;
+}
