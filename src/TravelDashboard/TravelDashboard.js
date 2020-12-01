@@ -157,7 +157,7 @@ today = yyyy + '-' + mm + '-' + dd;
           </Map>
           <div className= 'container_width_standard'>
           {/* <img  alt='dashb' src='https://www.linkpicture.com/q/dashboard_example.png'></img> */}
-          <Card className='dashboard'>
+       { this.state.country &&  <Card className='dashboard'>
             <h2>{this.state.country}</h2>
             <div>code:</div>
             <div className='dashboard_left_container'>
@@ -183,7 +183,7 @@ today = yyyy + '-' + mm + '-' + dd;
             <div className= 'weather_container'>
             <h5>Weather</h5>
           {this.state.weather_data.map(data_point=>{
-            return (<Card className='weather_card' variant='outlined'><span className='weather_attribute'>{data_point.date}</span> <span>{data_point.temp_high}/ {data_point.temp_high} </span> {data_point.weather} </Card>)
+            return (<Card className='weather_card' variant='outlined'><span className='weather_attribute'>{data_point.date}</span> <span>{Math.round(data_point.temp_low)} °C / {Math.round(data_point.temp_high)} °C </span> {data_point.weather} </Card>)
           })}
             </div>
 
@@ -191,6 +191,7 @@ today = yyyy + '-' + mm + '-' + dd;
             <div className='dashboard_right_container'>
             <div className='news_container'>
               <h5>Latest News</h5>
+              <p>Normally, there are in total 5 cards of recent news for the country selected. This works on localhost only</p>
             {this.state.news_data.map(article=>{
               return (
                 <Card
@@ -218,7 +219,7 @@ today = yyyy + '-' + mm + '-' + dd;
             })}
             </div>
             </div>
-          </Card>
+          </Card>}
           </div>
 
          

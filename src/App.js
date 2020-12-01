@@ -13,6 +13,7 @@ import {
 } from "react-router-dom";
 import LandingPage from './LandingPage/LandingPage';
 import TravelDashboard from './TravelDashboard/TravelDashboard';
+import AboutUs from './About/About';
 
 export default function App() {
   return (
@@ -27,6 +28,9 @@ export default function App() {
           </Route>
           <Route path="/plan">
             <TravelDashboard />
+          </Route>
+          <Route path="/about">
+            <AboutUs />
           </Route>
         
         </Switch>

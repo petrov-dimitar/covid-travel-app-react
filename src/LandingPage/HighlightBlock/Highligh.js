@@ -88,7 +88,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ButtonBases() {
+
+export default function Highlight() {
   const classes = useStyles();
 
   return (

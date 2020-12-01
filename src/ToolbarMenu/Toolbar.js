@@ -5,8 +5,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import '../App.css'
 import Button from '@material-ui/core/Button';
 import '../index.css'
-import CloudUploadIcon from '@material-ui/icons/CloudUpload';
-import DeleteIcon from '@material-ui/icons/Delete';
+// import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+// import DeleteIcon from '@material-ui/icons/Delete';
 import {
   Link,
 } from "react-router-dom";
@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ButtonAppBar() {
+export default function ToolbarNavigation() {
   const classes = useStyles();
 
   return (
@@ -39,8 +39,9 @@ export default function ButtonAppBar() {
       <AppBar className={classes.root}  
         >
         <Toolbar className= 'design_brown_main'>
-        <Link to="/landing"> <Button className='toolbar_button'  startIcon={<DeleteIcon />} color="inherit">Home</Button></Link> 
-        <Link to="/plan"> <Button className='toolbar_button'   startIcon={<CloudUploadIcon />} color="inherit">Plan Trip</Button></Link>
+        <Link to="/landing"> <Button className='toolbar_button'  color="inherit">Home</Button></Link> 
+        <Link to="/plan"> <Button className='toolbar_button'   color="inherit">Plan Trip</Button></Link>
+        <Link to="/about"> <Button className='toolbar_button'   color="inherit">About Us</Button></Link>
         </Toolbar>
       </AppBar>
     </div>
